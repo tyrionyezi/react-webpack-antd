@@ -1,16 +1,15 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // html生成模版
+const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清楚包
 
 module.exports = {
     entry: './src/index.js',
     output: {
-        chunkFilename: '[name].bundle.js',
+        filename: '[name].[chunkhash].js',
         path: path.resolve('dist')
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
@@ -19,38 +18,37 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                use: [
-                  {
+                use: [{
                     loader: "html-loader"
-                  }
-                ]
+                }]
             },
             {
                 test: /\.(css|less)$/,
-                use: [
-                    {
-                        loader:'style-loader'
+                use: [{
+                        loader: 'style-loader'
                     },
                     {
                         loader: 'css-loader',
                     },
                     {
                         loader: 'less-loader',
-                        options: { javascriptEnabled: true }
+                        options: {
+                            javascriptEnabled: true
+                        }
                     }
                 ]
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [
-                  'file-loader'
+                    'file-loader'
                 ]
             },
         ]
     },
     resolve: {
         extensions: [".js", ".json", ".jsx", ".css"], //解决文件后缀
-        alias: {}
+        alias: {},
     },
     plugins: [
         new CleanWebpackPlugin(),
