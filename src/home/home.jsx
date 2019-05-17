@@ -38,7 +38,7 @@ export default class Home extends Component {
                             minHeight: 280,
                         }}
                     >
-                        Content
+                        Content1
                     </Content>
                 </Layout>
             </Layout>
