@@ -5,49 +5,50 @@ const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清楚包
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: '[name].[bundle].js',
+        filename: '[name].[hash].js',
+        chunkFilename: 'js/[name].[chunkhash:8].js',
         path: path.resolve('dist')
     },
     module: {
         rules: [{
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: {
+                loader: "babel-loader"
+            }
+        },
+        {
+            test: /\.html$/,
+            use: [{
+                loader: "html-loader"
+            }]
+        },
+        {
+            test: /\.(css|less)$/,
+            use: [{
+                loader: 'style-loader'
+            },
+            {
+                loader: 'css-loader',
+            },
+            {
+                loader: 'less-loader',
+                options: {
+                    javascriptEnabled: true
                 }
-            },
-            {
-                test: /\.html$/,
-                use: [{
-                    loader: "html-loader"
-                }]
-            },
-            {
-                test: /\.(css|less)$/,
-                use: [{
-                        loader: 'style-loader'
-                    },
-                    {
-                        loader: 'css-loader',
-                    },
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            javascriptEnabled: true
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    'file-loader'
-                ]
-            },
+            }
+            ]
+        },
+        {
+            test: /\.(png|svg|jpg|gif)$/,
+            use: [
+                'file-loader'
+            ]
+        },
         ]
     },
     resolve: {
-        extensions: [".js", ".json", ".jsx", ".css"], //解决文件后缀
+        extensions: [".js", ".json", ".jsx", ".css", ".less"], //解决文件后缀
         alias: {},
     },
     plugins: [

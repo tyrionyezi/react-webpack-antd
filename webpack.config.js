@@ -22,16 +22,16 @@ module.exports = {
             {
                 test: /\.html$/,
                 use: [
-                  {
-                    loader: "html-loader"
-                  }
+                    {
+                        loader: "html-loader"
+                    }
                 ]
             },
             {
                 test: /\.(css|less)$/,
                 use: [
                     {
-                        loader:'style-loader'
+                        loader: 'style-loader'
                     },
                     {
                         loader: 'css-loader',
@@ -45,7 +45,7 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [
-                  'file-loader'
+                    'file-loader'
                 ]
             },
         ]
@@ -74,5 +74,5 @@ module.exports = {
         https: false, // true for self-signed, object for cert authority
         noInfo: true, // only errors & warns on hot reload
         // ...
-      },
+    },
 }
