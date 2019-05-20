@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清楚包
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: '[name].[chunkhash].js',
+        filename: '[name].[bundle].js',
         path: path.resolve('dist')
     },
     module: {
@@ -54,7 +54,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'test',
-            filename: "./index.html",
+            template: "./index.html",
         }),
     ],
 }
