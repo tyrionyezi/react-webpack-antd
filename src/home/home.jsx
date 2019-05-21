@@ -3,15 +3,15 @@ import { Layout, Menu, Icon } from 'antd';
 const { Header, Sider, Content } = Layout;
 import './home.less';
 import SiderComponent from './components/sider/index.compoent';
-
+import Counter from './../components/counter/index.component'
 export default class Home extends Component {
     state = {
         collapsed: false,
     };
-    
+
     toggle = () => {
         this.setState({
-          collapsed: !this.state.collapsed,
+            collapsed: !this.state.collapsed,
         });
     };
 
@@ -20,7 +20,7 @@ export default class Home extends Component {
             <Layout className="main">
                 <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
                     <div className="logo">logo</div>
-                    <SiderComponent/>
+                    <SiderComponent />
                 </Sider>
                 <Layout>
                     <Header style={{ background: '#fff', padding: 0 }}>
@@ -39,6 +39,7 @@ export default class Home extends Component {
                         }}
                     >
                         Content1
+                        <Counter value={5000}></Counter>
                     </Content>
                 </Layout>
             </Layout>
