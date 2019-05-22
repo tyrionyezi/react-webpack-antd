@@ -1,6 +1,7 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = merge(common, {
     mode: 'production',
@@ -8,7 +9,7 @@ module.exports = merge(common, {
         splitChunks: {
             chunks: 'all',
             minSize: 10000, // 提高缓存利用率，这需要在http2/spdy
-            maxSize: 500, //没有限制
+            maxSize: 500000, //没有限制
             minChunks: 3, // 共享最少的chunk数，使用次数超过这个值才会被提取
             maxAsyncRequests: 5, //最多的异步chunk数
             maxInitialRequests: 5, // 最多的同步chunks数
@@ -53,6 +54,7 @@ module.exports = merge(common, {
         },
     },
     plugins: [
-        new UglifyJSPlugin()
+        new UglifyJSPlugin(),
+        new BundleAnalyzerPlugin()
     ]
 })
